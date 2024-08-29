@@ -1,0 +1,25 @@
+question_step_number,model_name,features,model_parameters,preprocessing_methods,accuracy,balance_accuracy
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",Orginal Data,0.7052827512852331,0.6913735840005151
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_links,0.7044850203864563,0.6901847586926275
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_doctor_names,0.7023577379897181,0.6850748144125541
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_specialization,0.7044850203864563,0.6900463436031784
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_duplicate_characters,0.7041304733203333,0.6896157893056778
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",convert_indic_digits_to_arabic,0.7043077468533948,0.6898937226041526
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",unify_numbers,0.7056372983513561,0.6913495020980249
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_numbers,0.7055486615848254,0.6912196433086234
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_date_time,0.7046622939195178,0.6901355448295305
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_punctuation,0.7043077468533948,0.6899068253941527
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_non_arabic,0.7043963836199255,0.6899902143201033
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_stopwords_and_duplicates,0.6464279383088105,0.6422182487649484
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",arabic_stemming,0.652455238432902,0.643117466465599
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",standardize_hamzat,0.7044850203864563,0.6900865350597052
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",standardize_alifat,0.7051941145187024,0.6911394427277671
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_tatweel,0.7043077468533948,0.6897951417922997
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_diacritics,0.7044850203864563,0.6901226295743406
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",remove_duplicate_spaces,0.7043077468533948,0.6899068253941527
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",best process text pipeline,0.7011168232582875,0.6850918388880262
+5.2,Logistic Regression,none,"multi_class=multinomial, solver=saga",TF-IDF with Logistic Regression,0.6950008863676653,0.6756901894794641
+TF-IDF with Logistic Regression & GridSearchCV,GridSearchCV,Bag of Words,"multi_class='multinomial', solver='lbfgs'",TF-IDF with Logistic Regression & GridSearchCV,0.6949122496011345,0.6756068005535135
+7.1.1,DNN_BoW,Bag of Words,"optimizer=adam, loss=categorical_crossentropy, metrics=[accuracy]",DNN_BoW,0.634196064527566,0.6077668560141111
+7.1.2,DNN with TF-IDF,DNN_TFIDF,default,DNN with TF-IDF,0.5857117532352419,0.5621197067907115
+7.2.3,CNN_EMB_without_vectors,Embedding layer,"optimizer=adam, loss=sparse_categorical_crossentropy, metrics=[accuracy]",texts_to_sequences,0.6294096791349052,0.6147249739118769
