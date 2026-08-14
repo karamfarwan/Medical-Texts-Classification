@@ -1,52 +1,61 @@
-# Medical Texts Classification
+Medical Texts Classification
 
-## Project Overview
+An NLP pipeline for classifying Arabic medical question-answer texts into 8 medical specialties, covering the full workflow from Arabic-specific text preprocessing to classical ML and deep learning models.
 
-This project focuses on classifying Arabic medical texts using Natural Language Processing (NLP) techniques. The primary objective is to accurately classify texts by leveraging various machine learning algorithms and text preprocessing methods.
+Overview
 
-## Project Steps
+Arabic medical Q&A platforms generate large volumes of unstructured text that need to be routed to the right medical specialty. This project builds and compares multiple text classification approaches — from traditional Bag-of-Words models to deep neural networks — specifically tuned for the linguistic challenges of Arabic medical text.
 
-1. **Data Analysis and Understanding**
-   - Analyze and comprehend the data without manually reading all entries.
-   
-2. **Text Cleaning and Standardization**
-   - Clean and standardize the Arabic text to prepare it for classification.
+Target classes (8 medical specialties): High Blood Pressure, Psychiatry, Benign/Malignant Tumors, Diabetes, Wounds, Bone Injuries, Blood Disorders, Endocrine Disorders.
 
-3. **Text Classification**
-   - Use different vectorization methods (e.g., TF-IDF, Bag of Words) and machine learning algorithms to classify the texts.
-   - Study the impact of preprocessing techniques on classification accuracy.
+Key Features
+Arabic-Specific Text Preprocessing
 
-4. **Experimentation with Libraries**
-   - Work with libraries such as `sklearn`, `nltk`, and `pandas` for text processing and classification.
+Built a modular pipeline of 17 custom preprocessing functions, including:
 
-## Installation
+Doctor name/specialization removal, link and date-time stripping
+Indic-to-Arabic digit normalization
+Diacritics removal, Hamza/Alif standardization, Tatweel (kashida) removal
+Duplicate character/space normalization
+Arabic stopword removal and ISRI stemming
+Systematic evaluation of each preprocessing step's individual impact on model accuracy
+Exploratory Text Analysis
+Word frequency, hapax legomena, and n-gram (bigram/trigram) collocation analysis per class
+Arabic word clouds (using arabic_reshaper and python-bidi for correct RTL rendering)
+Vocabulary size and class distribution analysis
+Feature Engineering
+Bag-of-Words (CountVectorizer) and TF-IDF representations
+Custom Skip-gram word embeddings trained from scratch (Keras), including word analogy testing (e.g., "high" − "pressure" + "blood")
+Hyperparameter tuning via GridSearchCV (vectorizer and Logistic Regression parameters)
+Models Implemented & Compared
+Approach	Technique
+Baseline	Logistic Regression (multinomial, BoW)
+Optimized preprocessing	Logistic Regression on best preprocessing pipeline
+TF-IDF	Logistic Regression with TF-IDF + GridSearchCV
+Deep Learning	DNN on Bag-of-Words
+Deep Learning	DNN on TF-IDF
+Deep Learning	CNN with learned embeddings (Conv1D + MaxPooling)
 
-To replicate this project, ensure you have the following libraries installed:
+All models were evaluated using accuracy and balanced accuracy (to account for class imbalance across specialties), with results consolidated into a comparison table.
 
-```bash
-pip install pandas scikit-learn nltk matplotlib
-```
+Tech Stack
 
-## Usage
+NLP: NLTK (tokenization, stemming, stopwords, collocations), arabic_reshaper, python-bidi, WordCloud
 
-1. **Data Preprocessing:**
-   - Load the data and clean it using the provided preprocessing scripts.
-   - Tokenize and vectorize the text data for model input.
+Feature Extraction: Scikit-learn (CountVectorizer, TfidfVectorizer), Keras Tokenizer
 
-2. **Model Training and Evaluation:**
-   - Train various machine learning models on the preprocessed data.
-   - Evaluate the models using validation and test datasets.
+Machine Learning: Scikit-learn (Logistic Regression, GridSearchCV)
 
-3. **Impact Analysis:**
-   - Analyze how different preprocessing steps affect the classification accuracy.
+Deep Learning: Keras/TensorFlow (Dense networks, Conv1D, Embedding layers, Skip-gram)
 
-## Results
+Data Handling: Pandas, NumPy
 
-- The impact of preprocessing on classification accuracy was significant. Proper text cleaning and standardization improved model performance.
-- The use of libraries like `nltk` and `sklearn` was critical in achieving accurate text classification.
+Visualization: Matplotlib, Seaborn
 
-## Conclusion
-
-This project demonstrated the importance of text preprocessing in the context of NLP, particularly when handling complex languages like Arabic. The findings underscore the value of experimenting with different approaches to enhance model performance.
-
----
+Project Structure
+Medical_Texts_Classification.ipynb   # Full pipeline: preprocessing → feature engineering → modeling → evaluation
+homework1_data/                       # train/val/test datasets
+Key Findings
+Systematic ablation of preprocessing steps showed that not all cleaning operations improve accuracy equally — some (e.g., aggressive stemming) can reduce performance depending on the model.
+TF-IDF with tuned Logistic Regression outperformed raw Bag-of-Words baselines.
+Deep learning models (DNN, CNN) were evaluated against classical baselines to assess the trade-off between model complexity and performance on a relatively small, imbalanced Arabic medical dataset.
